@@ -49,7 +49,7 @@ CacheControllers.createEntry = function (req, res, next) {
  * error message on failure.
  */
 CacheControllers.fetchData = function (req, res, next) {
-  // GET /cache/:key
+  // GET /cache/
   try {
     const { key } = req.body;
     const item = dataStore.getItem(key);
@@ -96,7 +96,7 @@ CacheControllers.deleteData = function (req, res, next) {
 /************************end required************************/
 
 /*extra operations*/
-// keys, values, entries, size, clear, stats
+// keys, values, entries, size, stats, clear
 
 /**
  * CacheControllers.getKeys fetches all keys from the data

@@ -9,7 +9,7 @@ router.get("/", CC.fetchData);
 router.delete("/del/:key", CC.deleteData);
 
 /*extra routes*/
-// keys, values, entries, size, clear, stats
+// keys, values, entries, size, stats, clear
 router.get("/keys", CC.getKeys);
 router.get("/values", CC.getValues);
 router.get("/entries", CC.getEntries);
