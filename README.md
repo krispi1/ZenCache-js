@@ -20,7 +20,12 @@
 |Delete all|DELETE|http://localhost:4000/cache/clear|
 
 ##### Installation
-
+```bash
+git clone https://github.com/krispi1/ZenCache-js.git
+```
+```bash
+cd ZenCache-js
+```
 ```bash
 npm install or yarn 
 ```
