@@ -12,20 +12,22 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Middlewares
-app.use(session({ 
-  "secret": "ajf943qy3hpof802082ehf", 
-  cookie: { "maxAge": 2628000 } // 1 month 
-}));
+app.use(
+  session({
+    secret: "ajf943qy3hpof802082ehf",
+    cookie: { maxAge: 2628000 }, // 1 month
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/cache", cacheRouter);
 
 app.get("/", (req, res) => {
-  res.json({ 
-    "name": "ZenCache",
-    "by": "Geoffrey Siele",
-    "for": "Zencastr",
+  res.json({
+    name: "ZenCache",
+    by: "Geoffrey Siele",
+    for: "Zencastr",
   });
 });
 

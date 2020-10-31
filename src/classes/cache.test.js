@@ -24,10 +24,10 @@ describe("Cache class", () => {
 
   test("Cache instance properties and their operations", () => {
     const setItem = cache.setItem("language", "JavaScript");
-    
+
     expect(Entry).toHaveBeenCalledTimes(1);
     expect(typeof cache.dataStore).toBe("object");
-    
+
     expect(typeof setItem).toBe("object");
     expect(typeof cache.getItem("language")).toBe("object");
     expect(typeof cache.deleteItem("language")).toBe("boolean");

@@ -7,7 +7,7 @@
  * @class Entry
  */
 class Entry {
-  constructor(key, value, ttl = 2628000000) { 
+  constructor(key, value, ttl = 2628000000) {
     this.key = key;
     this.value = value;
     this.ttl = ttl;

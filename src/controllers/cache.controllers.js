@@ -10,16 +10,16 @@ const dataStore = new Cache();
 // add, fetch, remove
 
 /**
- * CacheControllers.createEntry inserts a new data item into 
+ * CacheControllers.createEntry inserts a new data item into
  * the data store as a key:value pair.
  *
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * @returns {object} object with an operation report on success 
+ * @returns {object} object with an operation report on success
  * or one with error message on failure.
  */
-CacheControllers.createEntry = function(req, res, next) {
+CacheControllers.createEntry = function (req, res, next) {
   // POST /cache/
   try {
     const keyValue = Object.entries(req.body)[0];
@@ -27,9 +27,9 @@ CacheControllers.createEntry = function(req, res, next) {
     const value = keyValue[1];
     const data = dataStore.setItem(key, value);
     if (data) {
-      return res.status(200).json({ "new_entry": [key, value] });
+      return res.status(200).json({ new_entry: [key, value] });
     } else {
-      return res.status(409).json({ "message": "Failed to create entry!" });
+      return res.status(409).json({ message: "Failed to create entry!" });
     }
   } catch (error) {
     console.log(error.message);
@@ -46,15 +46,15 @@ CacheControllers.createEntry = function(req, res, next) {
  * @param {*} res
  * @param {*} next
  * @returns {object} object with key:value on success or one with
- * error message on failure. 
+ * error message on failure.
  */
-CacheControllers.fetchData = function(req, res, next) {
+CacheControllers.fetchData = function (req, res, next) {
   // GET /cache/:key
   try {
     const { key } = req.body;
     const item = dataStore.getItem(key);
     return res.status(200).json({
-      "item": item ? item : null,
+      item: item ? item : null,
     });
   } catch (error) {
     console.log(error.message);
@@ -71,17 +71,19 @@ CacheControllers.fetchData = function(req, res, next) {
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * @returns {object} object with an operation report on success 
+ * @returns {object} object with an operation report on success
  * or one with error message on failure.
  */
-CacheControllers.deleteData = function(req, res, next) {
+CacheControllers.deleteData = function (req, res, next) {
   // DELETE /cache/del/:key
   try {
     const deleted = dataStore.deleteItem(req.params.key);
     if (deleted) {
       return res.status(200).json({ message: `${req.params.key} deleted!` });
     } else {
-      return res.status(200).json({ message: `${req.params.key} wasn't found!` });
+      return res
+        .status(200)
+        .json({ message: `${req.params.key} wasn't found!` });
     }
   } catch (error) {
     console.log(error.message);
@@ -97,20 +99,20 @@ CacheControllers.deleteData = function(req, res, next) {
 // keys, values, entries, size, clear, stats
 
 /**
- * CacheControllers.getKeys fetches all keys from the data 
+ * CacheControllers.getKeys fetches all keys from the data
  * store.
  *
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * @returns {object} object with an array of keys on success 
+ * @returns {object} object with an array of keys on success
  * or one with error message on failure.
  */
-CacheControllers.getKeys = function(req, res, next) {
+CacheControllers.getKeys = function (req, res, next) {
   // GET /cache/keys
   try {
     const keys = dataStore.getKeys();
-    return res.status(200).json({ "keys": Array.from(keys) });
+    return res.status(200).json({ keys: Array.from(keys) });
   } catch (error) {
     console.log(error.message);
     return res
@@ -120,20 +122,20 @@ CacheControllers.getKeys = function(req, res, next) {
 }; // getKeys
 
 /**
- * CacheControllers.getValues fetches all values from the data 
+ * CacheControllers.getValues fetches all values from the data
  * store.
  *
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * @returns {object} object with an array of values on 
- * success or one with error message on failure. 
+ * @returns {object} object with an array of values on
+ * success or one with error message on failure.
  */
-CacheControllers.getValues = function(req, res, next) {
+CacheControllers.getValues = function (req, res, next) {
   // GET /cache/values
   try {
     const values = dataStore.getValues();
-    return res.status(200).json({ "values": Array.from(values) });
+    return res.status(200).json({ values: Array.from(values) });
   } catch (error) {
     console.log(error.message);
     return res
@@ -143,20 +145,20 @@ CacheControllers.getValues = function(req, res, next) {
 }; // getValues
 
 /**
- * CacheControllers.getEntries fetches all entries in the data 
+ * CacheControllers.getEntries fetches all entries in the data
  * store.
  *
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * @returns {object} object with an array key:value arrays on 
- * success or one with error message on failure. 
+ * @returns {object} object with an array key:value arrays on
+ * success or one with error message on failure.
  */
-CacheControllers.getEntries = function(req, res, next) {
+CacheControllers.getEntries = function (req, res, next) {
   // GET /cache/entries
   try {
     const entries = dataStore.getEntries();
-    return res.status(200).json({ "entries": Array.from(entries) });
+    return res.status(200).json({ entries: Array.from(entries) });
   } catch (error) {
     console.log(error.message);
     return res
@@ -175,10 +177,10 @@ CacheControllers.getEntries = function(req, res, next) {
  * @returns {object} object with size on success or one with
  * error on failure.
  */
-CacheControllers.getSize = function(req, res, next) {
+CacheControllers.getSize = function (req, res, next) {
   // GET /cache/size
   try {
-    return res.status(200).json({ "size": dataStore.getSize() });
+    return res.status(200).json({ size: dataStore.getSize() });
   } catch (error) {
     console.log(error.message);
     return res
@@ -196,17 +198,16 @@ CacheControllers.getSize = function(req, res, next) {
  * @returns {object} object with stats on success or one with
  * error on failure.
  */
-CacheControllers.getStats = function(req, res, next) {
+CacheControllers.getStats = function (req, res, next) {
   // GET /cache/stats
   try {
     const stats = dataStore.getStats();
-    console.log(stats);
-    return res.status(200).json({ "stats": stats });
+    return res.status(200).json({ stats: stats });
   } catch (error) {
     console.log(error.message);
     return res
       .status(500)
-      .json({ "error": `Something went wrong! ${error.message}` });
+      .json({ error: `Something went wrong! ${error.message}` });
   }
 }; // getStats
 
@@ -216,24 +217,26 @@ CacheControllers.getStats = function(req, res, next) {
  * @param {*} req
  * @param {*} res
  * @param {*} next
- * @returns {object} object with message on success or one 
+ * @returns {object} object with message on success or one
  * with error on failure.
  */
-CacheControllers.clearAll = function(req, res, next) {
+CacheControllers.clearAll = function (req, res, next) {
   // GET /cache/clear
   try {
     dataStore.clearAll();
     const size = dataStore.getSize();
     if (size === 0) {
-      return res.status(200).json({ "message": `Data cleared! size: ${size}` });
+      return res.status(200).json({ message: `Data cleared! size: ${size}` });
     } else {
-      return res.status(409).json({ "message": `Data wasn't cleared! size: ${size}` });
+      return res
+        .status(409)
+        .json({ message: `Data wasn't cleared! size: ${size}` });
     }
   } catch (error) {
     console.log(error.message);
     return res
       .status(500)
-      .json({ "error": `Something went wrong! ${error.message}` });
+      .json({ error: `Something went wrong! ${error.message}` });
   }
 }; // clearAll
 

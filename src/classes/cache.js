@@ -45,7 +45,7 @@ class Cache {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
     }
-  } // #keyToString
+  }; // #keyToString
 
   /**
    * setItem receives a key and value and creates an entry of
@@ -68,11 +68,11 @@ class Cache {
   };
 
   /**
-   * getItem takes a key input and returns its corresponding 
+   * getItem takes a key input and returns its corresponding
    * value.
    *
    * @param {*} key
-   * @returns {(any|undefined)} the corresponding value of the 
+   * @returns {(any|undefined)} the corresponding value of the
    * provided key or undefined if key isn't found.
    */
   getItem = (key) => {
@@ -82,7 +82,7 @@ class Cache {
       if (item === undefined || item === null) {
         this.misses++;
       } else {
-        this.hits++
+        this.hits++;
       }
       return item;
     } catch (error) {
@@ -95,11 +95,11 @@ class Cache {
    * deleteItem takes a key and deletes it from the data store.
    *
    * @param {*} key
-   * @returns {boolean} true if key existed and has been 
+   * @returns {boolean} true if key existed and has been
    * deleted or false if key didn't exist.
    */
   deleteItem = (key) => {
-    try{
+    try {
       const qualifiedKey = this.#keyToString(key);
       return this.dataStore.delete(qualifiedKey);
     } catch (error) {
@@ -114,7 +114,7 @@ class Cache {
    * @returns {object} an iterable oject.
    */
   getKeys = () => {
-    try{
+    try {
       return this.dataStore.keys();
     } catch (error) {
       console.log(error.message);
@@ -128,7 +128,7 @@ class Cache {
    * @returns {object} an iterable oject.
    */
   getValues = () => {
-    try{
+    try {
       return this.dataStore.values();
     } catch (error) {
       console.log(error.message);
@@ -137,12 +137,12 @@ class Cache {
   };
 
   /**
-   * getEntries fetches all entries in the data store. 
+   * getEntries fetches all entries in the data store.
    *
    * @returns {object} an iterable oject with key:value pairs.
    */
   getEntries = () => {
-    try{
+    try {
       return this.dataStore.entries();
     } catch (error) {
       console.log(error.message);
@@ -153,11 +153,11 @@ class Cache {
   /**
    * getSize finds the number of items in the data store.
    *
-   * @returns {number} an integer of number of items in the 
+   * @returns {number} an integer of number of items in the
    * data store.
    */
   getSize = () => {
-    try{
+    try {
       return this.dataStore.size;
     } catch (error) {
       console.log(error.message);
@@ -171,13 +171,13 @@ class Cache {
    * @returns {object} object with the stats in key:value pairs.
    */
   getStats = () => {
-    try{
+    try {
       const stats = {
-        "numberOfItems": this.dataStore.size,
-        "hits": this.hits,
-        "misses": this.misses,
+        numberOfItems: this.dataStore.size,
+        hits: this.hits,
+        misses: this.misses,
       };
-  
+
       return stats;
     } catch (error) {
       console.log(error.message);
@@ -191,7 +191,7 @@ class Cache {
    * @returns {undefined}
    */
   clearAll = () => {
-    try{
+    try {
       return this.dataStore.clear();
     } catch (error) {
       console.log(error.message);
