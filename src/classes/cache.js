@@ -65,7 +65,7 @@ class Cache {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
     }
-  };
+  }; // setItem
 
   /**
    * getItem takes a key input and returns its corresponding
@@ -89,7 +89,7 @@ class Cache {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
     }
-  };
+  }; // getItem
 
   /**
    * deleteItem takes a key and deletes it from the data store.
@@ -106,7 +106,7 @@ class Cache {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
     }
-  };
+  }; // deleteItem
 
   /**
    * getKeys fetches all keys in the data store.
@@ -120,7 +120,7 @@ class Cache {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
     }
-  };
+  }; // getKeys
 
   /**
    * getValues fetches all values in the data store.
@@ -134,7 +134,7 @@ class Cache {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
     }
-  };
+  }; // getValues
 
   /**
    * getEntries fetches all entries in the data store.
@@ -148,7 +148,7 @@ class Cache {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
     }
-  };
+  }; // getEntries
 
   /**
    * getSize finds the number of items in the data store.
@@ -163,7 +163,7 @@ class Cache {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
     }
-  };
+  }; // getSize
 
   /**
    * getStats generates the cache's statistics.
@@ -183,7 +183,7 @@ class Cache {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
     }
-  };
+  }; // getStats
 
   /**
    * clearAll deletes everything in the data store.
@@ -197,7 +197,7 @@ class Cache {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
     }
-  };
+  }; // clearAll
 } // Cache
 
 module.exports = Cache;
