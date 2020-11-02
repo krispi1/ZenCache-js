@@ -1,9 +1,9 @@
 "use strict";
 
 const Cache = require("./cache");
-const Entry = require("../classes/entry");
+const Entry = require("./entry");
 
-jest.mock("../classes/entry");
+jest.mock("./entry");
 
 describe("Cache class", () => {
   const cache = new Cache();
