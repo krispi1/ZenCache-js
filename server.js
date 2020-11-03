@@ -24,7 +24,7 @@ app.use(cors());
 app.use("/cache", cacheRouter);
 
 app.get("/", (req, res) => {
-  res.json({
+  res.status(200).json({
     name: "ZenCache",
     by: "Geoffrey Siele",
     for: "Zencastr",

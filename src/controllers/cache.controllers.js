@@ -221,7 +221,7 @@ CacheControllers.getStats = function (req, res, next) {
  * with error on failure.
  */
 CacheControllers.clearAll = function (req, res, next) {
-  // GET /cache/clear
+  // DELETE /cache/clear
   try {
     dataStore.clearAll();
     const size = dataStore.getSize();

@@ -59,8 +59,12 @@ class Cache {
   setItem = (key, value) => {
     try {
       const qualifiedKey = this.#keyToString(key);
-      const entry = new Entry(qualifiedKey, value);
-      return this.dataStore.set(qualifiedKey, entry);
+      if (qualifiedKey) {
+        const entry = new Entry(qualifiedKey, value);
+        return this.dataStore.set(qualifiedKey, entry);
+      } else {
+        throw new Error("InvalidKeyError: Valid keys are either strings or numbers.");
+      }
     } catch (error) {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
@@ -78,13 +82,17 @@ class Cache {
   getItem = (key) => {
     try {
       const qualifiedKey = this.#keyToString(key);
-      const item = this.dataStore.get(qualifiedKey);
-      if (item === undefined || item === null) {
-        this.misses++;
+      if (qualifiedKey) {
+        const item = this.dataStore.get(qualifiedKey);
+        if (item === undefined || item === null) {
+          this.misses++;
+        } else {
+          this.hits++;
+        }
+        return item;
       } else {
-        this.hits++;
+        throw new Error("InvalidKeyError: Valid keys are either strings or numbers.");
       }
-      return item;
     } catch (error) {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
@@ -101,7 +109,11 @@ class Cache {
   deleteItem = (key) => {
     try {
       const qualifiedKey = this.#keyToString(key);
-      return this.dataStore.delete(qualifiedKey);
+      if (qualifiedKey) {
+        return this.dataStore.delete(qualifiedKey);
+      } else {
+        throw new Error("InvalidKeyError: Valid keys are either strings or numbers.");
+      }
     } catch (error) {
       console.log(error.message);
       return { message: `Error: ${error.message}` };
